@@ -19,4 +19,12 @@ public class mainmenu : MonoBehaviour
         SceneManager.LoadScene("hlavnacast1");
         Time.timeScale = 1f;
     }
+    public void Spinner()
+    {
+        SceneManager.LoadScene("toèka");
+            Time.timeScale = 1f;
+    }
+
+
+
 }

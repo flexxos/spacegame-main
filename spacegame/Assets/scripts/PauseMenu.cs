@@ -24,6 +24,10 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("mainmenu");
         Time.timeScale = 1f;
     }
+    public void HomeGame()
+    {
+        SceneManager.LoadScene("hlavnacast1");
+    }
     public void Settings()
     {
         SceneManager.LoadScene("optionsmenu");
@@ -45,6 +49,6 @@ public class PauseMenu : MonoBehaviour
     {
         canvasGroup.DOFade(0, tweenDuration).SetUpdate(true);
         await pausePanelRect.DOAnchorPosY(topPosY, tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-        pauseButtonRect.DOAnchorPosX(1030, tweenDuration).SetUpdate(true);
+        pauseButtonRect.DOAnchorPosX(925, tweenDuration).SetUpdate(true);
     }
 }

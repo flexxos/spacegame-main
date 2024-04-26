@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 113
+  controlID: 41
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,14 +337,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\nbvcb\My project (1)
+  m_LastProjectPath: D:\spacegame-main\spacegame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 47}
-    m_SelectedIDs: b0940000
-    m_LastClickedID: 38064
-    m_ExpandedIDs: 0000000046940000489400004a9400004c94000000ca9a3b
+    scrollPos: {x: 0, y: 67}
+    m_SelectedIDs: a4940000
+    m_LastClickedID: 38052
+    m_ExpandedIDs: 000000004094000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -373,7 +373,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000046940000489400004a9400004c940000
+    m_ExpandedIDs: 0000000040940000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000807800002e79000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -470,9 +470,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c0940000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c8f3ffff18f4fffffcf4ffff74f5ffff4ef6ffff0cfbffff5a930000
+      m_ExpandedIDs: 0cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -788,11 +788,11 @@ MonoBehaviour:
       displayed: 0
       id: Scene View/Particles
       index: 6
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":24.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":24.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 24, y: 0}
+      snapOffset: {x: 24, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       layout: 4
       size: {x: 0, y: 0}
@@ -964,9 +964,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 352.25635, y: 139.7716, z: 576.468}
+    m_Target: {x: 540.7328, y: 469.70038, z: -1229.1033}
     speed: 2
-    m_Value: {x: 352.25635, y: 139.7716, z: 576.468}
+    m_Value: {x: 540.7328, y: 469.70038, z: -1229.1033}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1012,20 +1012,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.011767905, y: 0.29292437, z: -0.003613427, w: -0.9561464}
+    m_Target: {x: -0.034803253, y: -0.011401429, z: 0.0003508992, w: -0.99941903}
     speed: 2
-    m_Value: {x: -0.011772299, y: 0.29146475, z: -0.0035954618, w: -0.95650244}
+    m_Value: {x: -0.034803256, y: -0.011401429, z: 0.00035089924, w: -0.99941903}
   m_Size:
-    m_Target: 1314.8427
+    m_Target: 1.3250186
     speed: 2
-    m_Value: 1350.2877
+    m_Value: 1.3250186
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 0.58071
-    m_SpeedNormalized: 0.29
+    m_Speed: 1.3003497
+    m_SpeedNormalized: 0.64999986
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -1279,9 +1279,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 579
-    width: 1476
-    height: 412
+    y: 730
+    width: 1523
+    height: 261
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1413,12 +1413,12 @@ MonoBehaviour:
       oldMaxSizes: 
       oldSplitSize: 0
     m_HorizontalSplitter:
-      ID: 81
+      ID: 497
       splitterInitialOffset: 0
       currentActiveSplitter: -1
       realSizes:
-      - 443
-      - 1033
+      - 457
+      - 1066
       relativeSizes:
       - 0.3
       - 0.7
@@ -1428,7 +1428,7 @@ MonoBehaviour:
       maxSizes:
       - 0
       - 0
-      lastTotalSize: 1476
+      lastTotalSize: 1523
       splitSize: 6
       xOffset: 0
       m_Version: 1
