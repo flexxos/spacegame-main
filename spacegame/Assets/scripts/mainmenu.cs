@@ -24,6 +24,11 @@ public class mainmenu : MonoBehaviour
         SceneManager.LoadScene("toèka");
             Time.timeScale = 1f;
     }
+    public void Shop()
+    {
+        SceneManager.LoadScene("shop");
+        Time.timeScale = 1f;
+    }
 
 
 

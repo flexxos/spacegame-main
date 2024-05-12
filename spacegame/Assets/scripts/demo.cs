@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using EasyUI.PickerWheelUI;
 using UnityEngine.UI;
@@ -11,7 +12,6 @@ public class Demo : MonoBehaviour
     [SerializeField] private TMP_Text coinText; // TextMeshPro text for displaying coins
     [SerializeField] private TMP_Text ticketText; // TextMeshPro text for displaying tickets
     [SerializeField] private Button generateTicketButton; // Button to generate tickets
-    [SerializeField] private Button homeButton; // Home button
 
     [SerializeField] private PickerWheel pickerWheel;
 
@@ -21,39 +21,36 @@ public class Demo : MonoBehaviour
 
     private void Start()
     {
-        // Load coins from PlayerPrefs
-        totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
-
-        // Initialize text elements
-        UpdateCoinText();
-        UpdateTicketText();
+        LoadData(); // Load coins and tickets when the script starts
 
         // Add button listeners
         uiSpinButton.onClick.AddListener(SpinWheel);
         generateTicketButton.onClick.AddListener(GenerateTicket);
 
-        // Start the coin generation coroutine
-        StartCoroutine(GenerateCoins());
     }
 
-    private bool isSpinning = false; // Flag to indicate if the wheel is spinning
+    private void LoadData()
+    {
+        totalCoins = PlayerPrefs.GetInt("TotalCoins", 0); // Load coins from PlayerPrefs
+        totalTickets = PlayerPrefs.GetInt("TotalTickets", 0); // Load tickets from PlayerPrefs
+        UpdateCoinText(); // Update UI text for coins
+        UpdateTicketText(); // Update UI text for tickets
+    }
+
+
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("TotalCoins", totalCoins); // Save coins to PlayerPrefs
+        PlayerPrefs.SetInt("TotalTickets", totalTickets); // Save tickets to PlayerPrefs
+        PlayerPrefs.Save(); // Ensure PlayerPrefs data is saved immediately
+    }
 
     private void SpinWheel()
     {
-        if (totalTickets >= ticketCost && !isSpinning) // Check if enough tickets are available and not spinning
+        if (totalTickets >= ticketCost) // Check if enough tickets are available
         {
-            isSpinning = true; // Set spinning flag to true
             uiSpinButton.interactable = false;
             uiSpinButtonText.text = "Spinning..";
-
-            // Disable the home button
-            homeButton.interactable = false;
-            Color homeButtonColor = homeButton.image.color;
-            homeButtonColor.a = 0.5f; // Set button transparency
-            homeButton.image.color = homeButtonColor;
-
-            // Persist the home button between scenes
-            DontDestroyOnLoad(homeButton.gameObject);
 
             pickerWheel.OnSpinStart(() =>
             {
@@ -65,7 +62,6 @@ public class Demo : MonoBehaviour
                 Debug.Log("Spin end: Label:" + wheelPiece.Label + " , Amount:" + wheelPiece.Amount);
                 uiSpinButton.interactable = true;
                 uiSpinButtonText.text = "Spin!";
-                isSpinning = false; // Reset spinning flag
 
                 totalCoins += wheelPiece.Amount; // Increment total coins
                 UpdateCoinText(); // Update UI text
@@ -73,13 +69,8 @@ public class Demo : MonoBehaviour
                 totalTickets -= ticketCost; // Deduct ticket cost
                 UpdateTicketText(); // Update UI text for tickets
 
-                // Save coins to PlayerPrefs
-                PlayerPrefs.SetInt("TotalCoins", totalCoins);
-
-                // Enable the home button
-                homeButton.interactable = true;
-                homeButtonColor.a = 1f; // Reset button transparency
-                homeButton.image.color = homeButtonColor;
+                // Save data to PlayerPrefs
+                SaveData();
             });
 
             pickerWheel.Spin();
@@ -87,7 +78,7 @@ public class Demo : MonoBehaviour
         else
         {
             uiSpinButton.interactable = false;
-            Debug.Log("Not enough tickets or already spinning!");
+            Debug.Log("Not enough tickets!");
             uiSpinButtonText.text = "You don't have tickets!"; // Update spin button text
 
             // Start coroutine to revert text after 2 seconds
@@ -101,31 +92,15 @@ public class Demo : MonoBehaviour
         yield return new WaitForSeconds(2f); // Wait for 2 seconds
         uiSpinButton.interactable = true;
         uiSpinButtonText.text = "Spin!"; // Reset spin button text
-
-        // Enable home button
-        homeButton.interactable = true;
-        Color homeButtonColor = homeButton.image.color;
-        homeButtonColor.a = 1f; // Reset button transparency
-        homeButton.image.color = homeButtonColor;
     }
 
-    // Coin generation coroutine
-    private IEnumerator GenerateCoins()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f); // Wait for 1 second
-            totalCoins++; // Increment total coins
-            UpdateCoinText(); // Update UI text
-        }
-    }
 
     // Update the UI text displaying the coins
     private void UpdateCoinText()
     {
         if (coinText != null)
         {
-            coinText.text = "Coins: " + totalCoins.ToString(); // Update UI text
+            coinText.text = "" + totalCoins.ToString(); // Update UI text
         }
     }
 
@@ -134,7 +109,7 @@ public class Demo : MonoBehaviour
     {
         if (ticketText != null)
         {
-            ticketText.text = "Tickets: " + totalTickets.ToString(); // Update UI text
+            ticketText.text = "" + totalTickets.ToString(); // Update UI text
         }
     }
 
@@ -143,5 +118,6 @@ public class Demo : MonoBehaviour
     {
         totalTickets++; // Increment total tickets
         UpdateTicketText(); // Update UI text
+        SaveData(); // Save data after generating tickets
     }
 }
