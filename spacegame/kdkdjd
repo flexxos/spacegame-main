@@ -1,0 +1,117 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameManager : MonoBehaviour
+{
+    public Text bankAmountText;
+    public ChoiceButton[] buttons;
+    private int bankAmount = 1000000;
+    private int[] cardValues = new int[3];
+    private int winningCard;
+    private PlayerChoice playerChoice; // Storing player’s choice
+
+    private Color[] availableColors = {
+        Color.red, Color.green, Color.black, 
+        Color.blue, Color.magenta, Color.yellow
+    };
+
+    void Start()
+    {
+        winningCard = Random.Range(0, buttons.Length);
+        AssignRandomColors();
+        UpdateBankText();
+    }
+
+    private void AssignRandomColors()
+    {
+        List<Color> colorPool = new List<Color>(availableColors);
+        
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int randomIndex = Random.Range(0, colorPool.Count);
+            buttons[i].SetColor(colorPool[randomIndex]);
+            colorPool.RemoveAt(randomIndex); // Ensure unique colors
+        }
+    }
+
+    public void PlayerSelected(int index, PlayerChoice choice)
+    {
+        if (bankAmount <= 0)
+            return;
+
+        playerChoice = choice; // Store the player's choice
+
+        // Randomly distribute money between cards
+        for (int i = 0; i < cardValues.Length; i++)
+        {
+            cardValues[i] = Random.Range(200000, 400000);
+        }
+
+        // Check if the player won
+        if (index == winningCard)
+        {
+            print("Congratulations! You won.");
+        }
+        else
+        {
+            print("Your choice was incorrect!");
+        }
+
+        // Update buttons with the distributed values
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].DisplayValue(cardValues[i]);
+        }
+
+        // Update bank amount
+        bankAmount = 0;
+        UpdateBankText();
+    }
+
+    private void UpdateBankText()
+    {
+        bankAmountText.text = "Bank amount: " + bankAmount + " $";
+    }
+}
+
+
+
+
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ChoiceButton : MonoBehaviour
+{
+    public Text buttonText;
+    public Image buttonImage;
+    public int index;
+    private GameManager gameManager;
+    private PlayerChoice choice; // Enum variable for player’s choice
+
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
+    public void Select(bool isFor)
+    {
+        choice = isFor ? PlayerChoice.For : PlayerChoice.Against;
+        gameManager.PlayerSelected(index, choice);
+    }
+
+    public void DisplayValue(int value)
+    {
+        buttonText.text = value.ToString();
+    }
+
+    public void SetColor(Color newColor)
+    {
+        buttonImage.color = newColor;
+    }
+}
+
+
+
+
